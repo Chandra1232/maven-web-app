@@ -150,6 +150,7 @@
       </div>
       <a href="#" class="btn">Enroll Now</a>
     </div>
+
   </div>
 
 </body>
