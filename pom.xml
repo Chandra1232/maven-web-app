@@ -3,39 +3,125 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/maven-v4_0_0.xsd">
 
+  <!-- ===================================================== -->
+  <!-- =============== Project Coordinates ================= -->
+  <!-- ===================================================== -->
+
   <modelVersion>4.0.0</modelVersion>
 
+  <!-- Group = Organization / Company -->
   <groupId>in.ashokit</groupId>
+
+  <!-- Artifact = Application Name -->
   <artifactId>01-maven-web-app</artifactId>
+
+  <!-- Packaging Type -->
   <packaging>war</packaging>
+
+  <!-- Version -->
+  <!-- RELEASE → Goes to Release Repo -->
+  <!-- SNAPSHOT → Goes to Snapshot Repo -->
   <version>3.0-RELEASE</version>
+
   <name>01-maven-web-app</name>
   <url>http://maven.apache.org</url>
 
+  <!-- ===================================================== -->
+  <!-- =============== SonarQube Properties ================ -->
+  <!-- ===================================================== -->
+
   <properties>
+
+    <!-- Sonar Project Identification -->
     <sonar.projectKey>01-maven-web-app</sonar.projectKey>
     <sonar.projectName>01-maven-web-app</sonar.projectName>
     <sonar.projectVersion>3.0</sonar.projectVersion>
+
   </properties>
 
+  <!-- ===================================================== -->
+  <!-- ================= Dependencies ====================== -->
+  <!-- ===================================================== -->
+
   <dependencies>
+
+    <!-- Unit Testing Dependency -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+
   </dependencies>
 
+  <!-- ===================================================== -->
+  <!-- ================= Build Section ===================== -->
+  <!-- ===================================================== -->
+
   <build>
+
+    <!-- Final WAR Name -->
     <finalName>maven-web-app</finalName>
+
     <plugins>
+
+      <!-- WAR Plugin for Packaging -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
         <version>3.3.1</version>
       </plugin>
+
     </plugins>
+
   </build>
+
+  <!-- ===================================================== -->
+  <!-- =========== Nexus Artifact Repository Config ========= -->
+  <!-- ===================================================== -->
+
+  <!--
+    distributionManagement tells Maven:
+
+    WHERE to upload artifacts
+    WHEN we run: mvn deploy
+
+    Release version → Release Repo
+    Snapshot version → Snapshot Repo
+  -->
+
+  <distributionManagement>
+
+    <!-- ========== Release Repository ========== -->
+    <repository>
+
+      <!--
+        ID must match settings.xml server ID
+        Used for authentication mapping
+      -->
+      <id>nexus-releases</id>
+
+      <!-- Nexus Release Repo URL -->
+      <url>
+        http://13.204.53.250:8081/repository/chndra-release-repository/
+      </url>
+
+    </repository>
+
+    <!-- ========== Snapshot Repository ========== -->
+    <snapshotRepository>
+
+      <!-- Must match settings.xml -->
+      <id>nexus-snapshots</id>
+
+      <!-- Nexus Snapshot Repo URL -->
+      <url>
+        http://13.204.53.250:8081/repository/chandra-snapshot-repository/
+      </url>
+
+    </snapshotRepository>
+
+  </distributionManagement>
 
 </project>
