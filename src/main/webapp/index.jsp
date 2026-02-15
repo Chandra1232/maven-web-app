@@ -1,4 +1,4 @@
-<h1> Hello from SHEKHAR </h1>
+<h1> Hello from Shekhar </h1>
 <!DOCTYPE html>
 <html lang="en">
 <head>
